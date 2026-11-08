@@ -1,31 +1,37 @@
 #include <stdio.h>
 
-int search(int a[],int key , int n)
+int search(int a[],int n,int key)
 {
-    int mid,low=0,high=n-1;
+    int i,j;
+    int low = 0, high = n - 1, mid = 0;
+
     while(low<=high)
     {
         mid = (low + high)/2;
-        if(a[mid]==key)
+
+        if(a[mid] == key)
         {
             return mid;
         }
-        else if(a[mid]<key)
+        else if(key<a[mid])
+        {
+           high = mid - 1;
+        }
+        else if(key>a[mid])
         {
             low = mid + 1;
         }
-        else 
+        else
         {
-           high = mid -1;
+            return -1;
         }
-        
     }
-    return -1;
-   
+    
 }
+
 int main()
 {
-    int a[100],n,key = 0,result;
+    int a[100],n,result,key;
 
     printf("Enter the number of elements : ");
     scanf("%d",&n);
@@ -35,18 +41,18 @@ int main()
     {
         scanf("%d",&a[i]);
     }
-    printf("Enter the element to find : ");
+    printf("Enter the element to find");
     scanf("%d",&key);
 
-    result = search(a,key,n);
-
-    if (result == -1)
+    result = search(a,n,key);
+   
+    if(result == -1)
     {
-        printf("Element Not found");
+        printf("Element not found ");
     }
     else
     {
-        printf("%d is found at %d",key,result+1);
+        printf("%d is found in %d ",key,result+1);
     }
 
 }
