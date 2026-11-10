@@ -27,7 +27,7 @@ void visit(char name[])
     }
     current = newnode;
 
-    printf("%s is visited ", current -> page);
+    printf("%s is visited \n", current -> page);
 
 }
 
@@ -40,7 +40,7 @@ void back()
     else
     {
         current = current -> prev;
-        printf("%s ",current -> page);
+        printf("%s \n",current -> page);
     }
 }
 
@@ -48,12 +48,12 @@ void forward()
 {
     if(current == NULL || current -> next == NULL)
     {
-        printf("There is no next page");
+        printf("There is no next page \n");
     }
     else
     {
         current = current -> next;
-        printf("%s",current -> page);
+        printf("%s \n",current -> page);
     }
 }
 
@@ -61,9 +61,9 @@ void display()
 {
     struct node *temp = current;
 
-    if(current == NULL)
+    if(temp == NULL)
     {
-        printf("There is no page is visited");
+        printf("There is no page is visited \n");
     }
     while(temp -> prev != NULL)
     {
@@ -71,7 +71,7 @@ void display()
     }
     while(temp != NULL)
     {
-        printf("%s ->",current -> page);
+        printf("%s ->",temp -> page);
         temp = temp -> next;
     }
 }
@@ -80,22 +80,35 @@ int main()
     char name[100];
     int choice;
 
-    printf("WEB Navigation");
-    printf("1.visit webpage");
-    printf("2.previous page");
-    printf("3.next page");
-    printf("4.exti");
+     while(1)
+    { 
+    printf("\nWEB Navigation \n");
+    printf("1.visit webpage \n");
+    printf("2.previous page \n");
+    printf("3.next page \n");
+    printf("4.display \n");
+    printf("5.exit \n");
 
-    printf("Enter the choice : ");
-    scanf("%d",choice);
+    printf("\nEnter the choice : ");
+    scanf("%d",&choice);
+
+   
 
     switch(choice)
     {
         case 1: 
-         printf("Enter the page name to visit : ");
+         printf("\nEnter the page name to visit : ");
          scanf("%s",name);
-         
+         visit(name);break;
+        case 2:
+         back();break;
+        case 3:
+         forward();break;
+        case 4:
+         display();break;
+        case 5:
+         exit(0);break;
     }
-
+}
 
 }
